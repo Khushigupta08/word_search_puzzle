@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Search Game</title>
+</head>
+<body>
+    <h1>Word Search Game</h1>
+    
+    
+
+    <table border="1">
+        {% for row in grid %}
+        <tr>
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <form method="post" action="{% url 'search_game' %}">
+        {% csrf_token %}
+        <input type="text" name="word" placeholder="Enter a word" required>
+        <button type="submit">Search</button>
+    </form>
+     
+
+    <h1>Search Result</h1>
+    {% if found %}
+        <p>Word found!</p>
+    {% else %}
+        <p>Word not found.</p>
+    {% endif %}
+    
+   <h3>Found Words:</h3>
+   <ul id="found-words">
+       <!-- This will be updated dynamically -->
+       {% if found_words %}
+           {% for found_word in found_words %}
+               <li>{{ found_word }}</li>
+           {% endfor %}
+       {% endif %}
+   </ul>
+
+</body>
+</html>

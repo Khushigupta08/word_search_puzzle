@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+</head>
+<body>
+    <h1>Search Result</h1>
+
+   {% if found %}
+       <p>You found: {{ word }}</p>
+       <h3>Found Words:</h3>
+       <ul id="found-words">
+           {% for found_word in found_words %}
+               <li>{{ found_word }}</li>
+           {% endfor %}
+       </ul>
+       <a href="{% url 'create_game' %}">Continue</a>
+   {% else %}
+       <p>{{ message }}</p> <!-- Display wrong word message -->
+       <a href="{% url 'create_game' %}">Try Again</a>
+   {% endif %}
+</body>
+</html>
